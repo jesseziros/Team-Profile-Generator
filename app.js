@@ -15,14 +15,14 @@ const restOfTheTeam = () => {
     inquirer.prompt ([
         {
             type: "list",
-            choices: ["Manager", "Engineer", "Intern"],
+            choices: ["Manager", "Engineer", "Intern", "Create"],
             name: "Role",
             message: "Choose what role you wish to create:"
         },
     ])
     .then(result => {
         console.log(result)
-        switch (result) {
+        switch (result.Role) {
             case 'Manager':
                 addManager();
                 break;
@@ -31,6 +31,9 @@ const restOfTheTeam = () => {
                 break;
             case 'Intern':
                 addIntern();
+                break;
+            case 'Create':
+                createTeam();
         };
     });
 };
@@ -41,17 +44,17 @@ const addManager = () => {
         {
             type: "input",
             name: "name",
-            message: "What is your name?"
+            message: "What is your name:"
         },
         {
             type: "input",
             name: "id",
-            message: "What is your ID?"
+            message: "What is your ID:"
         },
         {
             type: "input",
             name: "email",
-            message: "What is your email?"
+            message: "What is your email:"
         },
         {
             type: "input",
@@ -71,22 +74,22 @@ const addEngineer = () => {
         {
             type: "input",
             name: "name",
-            message: "Engineer's name"
+            message: "Engineer's name:"
         },
         {
             type: "input",
             name: "id",
-            message: "Engineer's ID"
+            message: "Engineer's ID:"
         },
         {
             type: "input",
             name: "email",
-            message: "Engineer's email"
+            message: "Engineer's email:"
         },
         {
             type: "input",
             name: "Github",
-            message: "Engineer's Github username",
+            message: "Engineer's Github username:",
         },
     ])
     .then(result => {
