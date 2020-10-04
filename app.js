@@ -5,7 +5,7 @@ const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
-const OUTPUT_DIR = path.resolve(__dirname, "output");
+const OUTPUT_DIR = path.resolve(__dirname);
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
@@ -59,7 +59,7 @@ const addManager = () => {
         {
             type: "input",
             name: "office number",
-            message: "What is your office number"
+            message: "What is your office number:"
         },
     ])
     .then(result => {
@@ -104,22 +104,22 @@ const addIntern = () => {
         {
             type: "input",
             name: "name",
-            message: "Intern's name"
+            message: "Intern's name:"
         },
         {
             type: "input",
             name: "id",
-            message: "Intern's ID"
+            message: "Intern's ID:"
         },
         {
             type: "input",
             name: "email",
-            message: "Intern's email"
+            message: "Intern's email:"
         },
         {
             type: "input",
             name: "school",
-            message: "Intern's attended school"
+            message: "Intern's attended school:"
         },
     ])
     .then(result => {
