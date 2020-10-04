@@ -10,19 +10,103 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 const employeeArray = []
-const createManager = () => {
+
+const restOfTheTeam = () => {
     inquirer.prompt ([
+        {
+            type: "list",
+            choices: ["Manager", "Engineer", "Intern"]
+            name: "Role",
+            message: "Choose what role you wish to create:"
+        },
+    ]);
+};
+const addManager = () => {
+    inquirer.prompt ([        
         {
             type: "input",
             name: "name",
-            message: "Manger name"
+            message: "What is your name?"
         },
-        
+        {
+            type: "input",
+            name: "id",
+            message: "What is your ID?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is your email?"
+        },
+        {
+            type: "input",
+            name: "office number",
+            message: "What is your office number"
+        },
     ])
     .then(result => {
         const manager = new Manager(result.name)
         employeeArray.push(manager)
+        restOfTheTeam()
     });
+};
+const addEngineer = () => {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "Engineer's name"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "Engineer's ID"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "Engineer's email"
+        },
+        {
+            type: "input",
+            name: "Github",
+            message: "Engineer's Github username",
+        },
+    ])
+    .then(result => {
+        const engineer = new Engineer(result.name)
+        employeeArray.push(engineer)
+        restOfTheTeam()
+    });
+};
+const addIntern = () => {
+    inquirer.prompt ([
+        {
+            type: "input",
+            name: "name",
+            message: "Intern's name"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "Intern's ID"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "Intern's email"
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "Intern's attended school"
+        },
+    ])
+    .then(result => {
+        const intern = new Intern(result.name)
+        employeeArray.push(intern)
+        restOfTheTeam()
+    })
 }
 
 fs.writeFile(outputPath, render(employeeArray), (err) => {
