@@ -15,11 +15,14 @@ const restOfTheTeam = () => {
     inquirer.prompt ([
         {
             type: "list",
-            choices: ["Manager", "Engineer", "Intern"]
+            choices: ["Manager", "Engineer", "Intern"],
             name: "Role",
             message: "Choose what role you wish to create:"
         },
-    ]);
+    ])
+    addManager();
+    addEngineer();
+    addIntern();
 };
 const addManager = () => {
     inquirer.prompt ([        
@@ -109,13 +112,16 @@ const addIntern = () => {
     })
 }
 
-fs.writeFile(outputPath, render(employeeArray), (err) => {
-    if (err){
-        throw err
-    } else {
-        console.log("Completed")
-    }
-});
+const createTeam = () => {
+    fs.writeFile(outputPath, render(employeeArray), 
+    (err) => {
+        if (err){
+            throw err
+        } else {
+            console.log("Completed")
+        }
+    });
+}
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
