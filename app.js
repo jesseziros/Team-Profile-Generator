@@ -58,12 +58,12 @@ const addManager = () => {
         },
         {
             type: "input",
-            name: "office number",
+            name: "officenumber",
             message: "What is your office number:"
         },
     ])
     .then(result => {
-        const manager = new Manager(result.name)
+        const manager = new Manager(result.name, result.id, result.email, result.officenumber)
         employeeArray.push(manager)
         restOfTheTeam()
     });
@@ -93,7 +93,7 @@ const addEngineer = () => {
         },
     ])
     .then(result => {
-        const engineer = new Engineer(result.name)
+        const engineer = new Engineer(result.name, result.id, result.email, result.Github)
         employeeArray.push(engineer)
         restOfTheTeam()
     });
@@ -123,13 +123,14 @@ const addIntern = () => {
         },
     ])
     .then(result => {
-        const intern = new Intern(result.name)
+        const intern = new Intern(result.name, result.id, result.email, result.school)
         employeeArray.push(intern)
         restOfTheTeam()
     })
 };
 
 const createTeam = () => {
+    console.log(employeeArray)
     fs.writeFile(outputPath, render(employeeArray), 
     (err) => {
         if (err){
